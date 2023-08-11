@@ -1,0 +1,25 @@
+{
+    "terminal.integrated.allowChords": false,
+    "files.exclude": {
+        "**/.devcontainer/.go": true
+    },
+    "files.watcherExclude": {
+        "**/.devcontainer/.go": true
+    },
+    "search.exclude": {
+        "**/.devcontainer/.go": true
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "cSpell.ignorePaths": [
+        ".vscode",
+        ".devcontainer"
+    ],
+    "cSpell.words": [
+        "dstpath",
+        "newpath",
+        "oldpath",
+        "srcpath",
+        "thamaji"
+    ]
+}

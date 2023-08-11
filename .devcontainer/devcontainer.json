@@ -1,0 +1,51 @@
+{
+	"name": "files",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"UBUNTU_VERSION": "22.04",
+			"APT_MIRROR": "http://jp.archive.ubuntu.com/ubuntu/",
+			"GO_VERSION": "1.20.6"
+		}
+	},
+	"mounts": [
+		"source=${localWorkspaceFolder}/.devcontainer/.go,target=/home/vscode/go,type=bind"
+	],
+	"postStartCommand": "/bin/bash .devcontainer/post-start.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"golang.go",
+				"streetsidesoftware.code-spell-checker"
+			],
+			"settings": {
+				"go.useLanguageServer": true,
+				"go.formatTool": "goimports",
+				"go.lintTool": "golangci-lint",
+				"go.lintFlags": [
+					"--fast",
+					"-exclude=vendor/..."
+				],
+				"go.lintOnSave": "workspace",
+				"go.vetOnSave": "workspace",
+				"[go]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": true
+					},
+					"editor.snippetSuggestions": "bottom"
+				},
+				"[go.mod]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": true
+					}
+				},
+				"gopls": {
+					"usePlaceholders": true,
+					"staticcheck": false
+				}
+			}
+		}
+	}
+}
