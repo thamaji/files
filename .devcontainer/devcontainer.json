@@ -1,49 +1,33 @@
 {
-	"name": "files",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": {
-			"UBUNTU_VERSION": "22.04",
-			"APT_MIRROR": "http://jp.archive.ubuntu.com/ubuntu/",
-			"GO_VERSION": "1.20.6"
-		}
-	},
-	"mounts": [
-		"source=${localWorkspaceFolder}/.devcontainer/.go,target=/home/vscode/go,type=bind"
-	],
-	"postStartCommand": "/bin/bash .devcontainer/post-start.sh",
+	"name": "${localWorkspaceFolderBasename}",
+	"dockerComposeFile": "compose.yaml",
+	"service": "dev",
+	"containerUser": "vscode",
+	"remoteUser": "vscode",
+	"updateRemoteUserUID": true,
+	"workspaceFolder": "/workspace",
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"golang.go",
-				"streetsidesoftware.code-spell-checker"
+				"streetsidesoftware.code-spell-checker",
+				"golang.go"
 			],
 			"settings": {
-				"go.useLanguageServer": true,
-				"go.formatTool": "goimports",
-				"go.lintTool": "golangci-lint",
-				"go.lintFlags": [
-					"--fast",
-					"-exclude=vendor/..."
-				],
-				"go.lintOnSave": "workspace",
-				"go.vetOnSave": "workspace",
-				"[go]": {
-					"editor.formatOnSave": true,
-					"editor.codeActionsOnSave": {
-						"source.organizeImports": true
-					},
-					"editor.snippetSuggestions": "bottom"
+				"remote.autoForwardPortsSource": "output",
+				"files.exclude": {
+					"**/.devcontainer/.bash": true,
+					"**/.devcontainer/.extensions": true,
+					"**/.devcontainer/.go": true
 				},
-				"[go.mod]": {
-					"editor.formatOnSave": true,
-					"editor.codeActionsOnSave": {
-						"source.organizeImports": true
-					}
+				"files.watcherExclude": {
+					"**/.devcontainer/.bash": true,
+					"**/.devcontainer/.extensions": true,
+					"**/.devcontainer/.go": true
 				},
-				"gopls": {
-					"usePlaceholders": true,
-					"staticcheck": false
+				"search.exclude": {
+					"**/.devcontainer/.bash": true,
+					"**/.devcontainer/.extensions": true,
+					"**/.devcontainer/.go": true
 				}
 			}
 		}

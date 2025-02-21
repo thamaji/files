@@ -1,25 +1,61 @@
 {
     "terminal.integrated.allowChords": false,
+
     "files.exclude": {
-        "**/.devcontainer/.go": true
+        "**/vendor/": true
     },
     "files.watcherExclude": {
-        "**/.devcontainer/.go": true
+        "**/vendor/": true
     },
     "search.exclude": {
-        "**/.devcontainer/.go": true
+        "**/.devcontainer": true,
+        "**/.vscode": true,
+        "**/vendor/": true
     },
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 1000,
-    "cSpell.ignorePaths": [
-        ".vscode",
-        ".devcontainer"
+
+    // Golang
+    "go.useLanguageServer": true,
+    "go.formatTool": "goimports",
+    "go.vetOnSave": "package",
+    "go.vetFlags": [
+		"-all"
+	],
+    "go.lintOnSave": "package",
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": [
+        "--fast"
     ],
-    "cSpell.words": [
-        "dstpath",
-        "newpath",
-        "oldpath",
-        "srcpath",
-        "thamaji"
-    ]
+    "go.inlayHints.assignVariableTypes": false,
+    "go.inlayHints.compositeLiteralFields": true,
+    "go.inlayHints.compositeLiteralTypes": false,
+    "go.inlayHints.constantValues": true,
+    "go.inlayHints.functionTypeParameters": false,
+    "go.inlayHints.parameterNames": false,
+    "go.inlayHints.rangeVariableTypes": false,
+    "gopls": {
+        "usePlaceholders": true,
+        "staticcheck": true,
+        "build.directoryFilters": [
+            "-**/.devcontainer",
+            "-**/.vscode"
+        ],
+        "analyses": {
+            "unusedvariable": true,
+            "unusedwrite": true,
+            "useany": true
+        }
+    },
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.snippetSuggestions": "bottom"
+    },
+    "[go.mod]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    }
 }

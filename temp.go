@@ -5,6 +5,9 @@ import (
 	"os"
 )
 
+// CreateTemp は指定されたディレクトリに一時ファイルを作成します。
+// ディレクトリが存在しない場合は作成し、指定されたパターンに基づいて一時ファイルを作成します。
+// オプションでファイルに関する設定を指定できます。
 func CreateTemp(dir string, pattern string, opt ...Option) (*os.File, error) {
 	o := getOptions(opt...)
 	f, err := os.CreateTemp(dir, pattern)
@@ -28,6 +31,9 @@ func CreateTemp(dir string, pattern string, opt ...Option) (*os.File, error) {
 	return f, nil
 }
 
+// MkdirTemp は指定されたディレクトリに一時ディレクトリを作成します。
+// 作成したディレクトリに指定されたパーミッションを設定します。
+// オプションでファイルに関する設定を指定できます。
 func MkdirTemp(dir string, pattern string, opt ...Option) (string, error) {
 	o := getOptions(opt...)
 	name, err := os.MkdirTemp(dir, pattern)
